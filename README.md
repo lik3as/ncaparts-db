@@ -2,8 +2,15 @@
 ### 📥 Installation 
 ```
 npm install ncaparts-ctrl
-npm install https://github.com/lik3as/ncaparts-ctrl
 ```
+ou (linux)
+```
+npm install https://github.com/lik3as/ncaparts-ctrl
+cd .. & git clone https://github.com/lik3as/ncaparts-ctrl
+cd ncaparts-ctrl & npx tsc (ou babel)
+cp dist ../<seu_projeto>/node_modules/ncaparts-ctrl/ 
+```
+
 ### 🚀 Uso 
 ### ⚙ Configurar
 - Babel: todo
