@@ -16,13 +16,13 @@ export class ProdFab extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Produto)
   @Column
-  id_prod: number;
+  declare id_prod: number;
 
   @ForeignKey(() => Fabricante)
   @Column
-  id_fab: number;
+  declare id_fab: number;
 }

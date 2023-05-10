@@ -23,35 +23,33 @@ export class Mercadoria extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
   @ForeignKey(() => Produto)
-  id_prod: number;
+  declare id_prod: number;
 
   @Column
   @ForeignKey(() => Kit)
-  id_kit: number;
+  declare id_kit: number;
+
+  @Column
+  declare sku: string;
+
+  @Column
+  declare importado: boolean;
+
+  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
+  declare v_real: number;
+
+  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
+  declare v_dolar: number;
+
+  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
+  declare v_real_revenda: number;
 
 
   @HasMany(() => Logistica)
   logisticas: Logistica[];
-
-  @Column
-  sku: string;
-
-  @Column
-  importado: boolean;
-
-  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  v_real: number;
-
-  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  v_dolar: number;
-
-  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  v_real_revenda: number;
-
-
 
 }

@@ -17,25 +17,25 @@ export class Logistica extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   @ForeignKey(() => Mercadoria)
   @Column
-  id_merc: number;
+  declare id_merc: number;
 
   @Column
-  rastreio: string
+  declare rastreio: string
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  vol_liq: number
+  declare vol_liq: number
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  vol_brt: number
+  declare vol_brt: number
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  c_real: number
+  declare c_real: number
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  c_dolar: number
+  declare c_dolar: number
 
 }

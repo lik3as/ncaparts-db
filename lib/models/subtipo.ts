@@ -4,7 +4,6 @@ import {
   Table,
   Column,
   PrimaryKey,
-  ForeignKey,
   AutoIncrement,
   HasMany,
   Unique
@@ -15,13 +14,14 @@ export class Subtipo extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
   
+  @Unique
+  @Column
+  declare nome: string;
+
   @HasMany(() => Produto)
   produtos: Produto[]
 
-  @Unique
-  @Column
-  nome: string;
 
 }

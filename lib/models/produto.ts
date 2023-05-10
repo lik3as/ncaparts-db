@@ -48,14 +48,14 @@ export class Produto extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   /*
   *   Product Auto-Association
   */
   @ForeignKey(() => Produto)
   @Column
-  id_prod: number;
+  declare id_prod: number;
 
   @BelongsTo(() => Produto)
   produto: Produto
@@ -66,23 +66,23 @@ export class Produto extends Model{
 
   @ForeignKey(() => Tipo)
   @Column
-  id_tipo: number;
+  declare id_tipo: number;
 
   @ForeignKey(() => Subtipo)
   @Column
-  id_subtipo: number;
+  declare id_subtipo: number;
   
   @ForeignKey(() => Marca)
   @Column
-  id_marca: number;
+  declare id_marca: number;
 
   @ForeignKey(() => Modelo)
   @Column
-  id_modelo: number;
+  declare id_modelo: number;
 
   @ForeignKey(() => Versao)
   @Column
-  id_versao: number;
+  declare id_versao: number;
 
   /*
   *   OneToMany Other Associations
@@ -92,13 +92,13 @@ export class Produto extends Model{
   mercadorias: Mercadoria[];
 
   @Column
-  sku: string;
+  declare sku: string;
 
   @Column
-  final: boolean;
+  declare final: boolean;
 
   @Column
-  desc: string;
+  declare desc: string;
   
   /*
   *   Many To Many Associations

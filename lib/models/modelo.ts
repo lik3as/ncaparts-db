@@ -5,7 +5,6 @@ import {
   PrimaryKey,
   AutoIncrement,
   HasMany,
-  Scopes,
   Unique
 } from 'sequelize-typescript'
 import {Produto} from './index';
@@ -16,11 +15,11 @@ export class Modelo extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Unique
   @Column
-  nome: string
+  declare nome: string
 
   @HasMany(() => Produto)
   produtos: Produto[]

@@ -15,16 +15,16 @@ export class ProdKit extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   @Column
-  qtd_prod: number;
+  declare qtd_prod: number;
 
   @ForeignKey(() => Produto)
   @Column
-  id_prod: number
+  declare id_prod: number
 
   @ForeignKey(() => Kit)
   @Column
-  id_kit: number
+  declare id_kit: number
 };

@@ -14,19 +14,19 @@ export class Venda extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
-  id_merc: number;
+  declare qtd: number;
+
+  @Column
+  declare id_merc: number;
 
   @ForeignKey(() => Cliente)
   @Column
-  id_cli: number;
-
-  @Column
-  qtd: number;
+  declare id_cli: number;
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  valor_total: number;
+  declare valor_total: number;
 
 }

@@ -14,11 +14,11 @@ export class Marca extends Model{
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Unique
   @Column
-  nome: string
+  declare nome: string
 
   @HasMany(() => Produto)
   produtos: Produto[]

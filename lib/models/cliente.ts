@@ -12,20 +12,20 @@ export class Cliente extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   @Column
-  nome: string;
+  declare nome: string;
   
   @Column
-  contato: string;
+  declare contato: string;
   
   @Column
-  email: string;
+  declare email: string;
 
   @Column
-  senha: number;
+  declare senha: number;
 
   @Column
-  revendedor: boolean;
+  declare revendedor: boolean;
 };

@@ -21,13 +21,13 @@ export class Kit extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
   
   @Column
-  apelido: string;
+  declare apelido: string;
 
   @HasMany(() => Mercadoria)
-  mercadorias: Mercadoria[];
+  declare mercadorias: Mercadoria[];
 
   @BelongsToMany(() => Produto, () => ProdKit)
   produtos: Produto[];

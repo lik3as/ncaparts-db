@@ -23,22 +23,22 @@ export class Fabricante extends Model{
   @AutoIncrement
   @PrimaryKey
   @Column 
-  id: number;
+  declare id: number;
   
   @Column
-  cnpj: string;
+  declare cnpj: string;
 
   @Column
-  nome: string;
+  declare nome: string;
 
   @Column
-  contato: string;
+  declare contato: string;
 
   @Column
-  local: string;
+  declare local: string;
 
   @Column
-  email: string;
+  declare email: string;
   
   @BelongsToMany(() => Produto, () => ProdFab, 'id_fab', 'id_prod')
   produtos: Produto[]
