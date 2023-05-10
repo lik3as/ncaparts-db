@@ -24,5 +24,4 @@ export class Versao extends Model{
 
   @HasMany(() => Produto)
   produtos: Produto[]
-
 }

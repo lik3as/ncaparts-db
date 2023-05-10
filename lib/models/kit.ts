@@ -27,7 +27,7 @@ export class Kit extends Model{
   declare apelido: string;
 
   @HasMany(() => Mercadoria)
-  declare mercadorias: Mercadoria[];
+  mercadorias: Mercadoria[];
 
   @BelongsToMany(() => Produto, () => ProdKit)
   produtos: Produto[];
