@@ -1,4 +1,3 @@
-import {Venda} from './index'
 import {
   Table,
   Column,
