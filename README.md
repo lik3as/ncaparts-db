@@ -1,19 +1,25 @@
 ## NCA parts REST application
 ### 📥 Installation 
 ```
-git clone https://github.com/lik3as/ncaparts-rest
-cd ncaparts-rest
+npm install ncaparts-ctrl
+npm install https://github.com/lik3as/ncaparts-ctrl
 ```
-### 🔗 Instalar Dependências 
-- Necessário ```sequelize@6```
-```
-npm install sequelize-typescript typescript express sequelize pg pg-hstore dotenv
-npm install --save-dev @types/node @types/express
-```
-### Variáveis de ambiente
-- A aplicação utiliza o pacote ```dotenv``` para a segurança dos dados.
-- Para o uso correto, defina as variáveis corretamente neste arquivo .env
 ### 🚀 Uso 
+### ⚙ Configurar
+- Babel: todo
+- tsc:
+1. Em ```compilerOptions```, defina ```"experimentalDecorators": true``` e ```"emitDecoratorMetadata": true```. Essas opções irão habilitar os decorators e a inferência de tipo pelo sequelize-typescript.
+2. Ainda em ```compilerOptions```, defina ```strictPropertyInitialization: false```. Isso fará com que o typescript não reclame de atributos de classes não inicializados.
+3. Adicione um arquivo .env no seu diretório ```src/``` contendo os dados do banco de dados da seguinte maneira:
+```
+NODE_ENV=<ambiente>
+DB_PROD_USERNAME=<nome_do_usuário>
+DB_PROD_PASSWORD=<senha_do_usuário>
+DB_PROD_DATABASE=<nome_do_bd>
+DB_PROD_HOSTNAME=<nome_do_host>
+DB_PROD_PORT=<porta>
+```
+
 #### Adicionar uma nova entidade
 1. Modele no arquivo disponibilizado pelo criador do repositório
 2. Defina a entidade como tabela no diretório ```models/```
