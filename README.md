@@ -10,6 +10,7 @@ cd .. & git clone https://github.com/lik3as/ncaparts-ctrl
 cd ncaparts-ctrl & npx tsc (ou babel)
 cp dist ../<seu_projeto>/node_modules/ncaparts-ctrl/ 
 ```
+***Não é recomendado utilizar o babel para este projeto sequelize-typescript***
 
 ### 🚀 Uso 
 ### ⚙ Configurar
