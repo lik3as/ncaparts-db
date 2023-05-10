@@ -1,7 +1,0 @@
-export {default as Client} from './services/srv.cli'
-export {default as Fab} from './services/srv.fab'
-export {default as Kit} from './services/srv.kit'
-export {default as Logi} from './services/srv.logi'
-export {default as Merc} from './services/srv.merc'
-export {default as Prod} from './services/srv.prod'
-export {default as Ven} from './services/srv.ven'

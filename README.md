@@ -1,4 +1,4 @@
-## NCA parts CTRL application
+## NCA parts REST application
 ### 📥 Installation 
 ```
 git clone https://github.com/lik3as/ncaparts-rest
