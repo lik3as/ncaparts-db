@@ -1,25 +1,43 @@
 ## NCA parts REST application
-### 📥 Installation 
+## 📥 Installation 
 ```
-git clone https://github.com/lik3as/ncaparts-rest
-cd ncaparts-rest
+npm install ncaparts-ctrl
 ```
-### 🔗 Instalar Dependências 
-- Necessário ```sequelize@6```
+ou (linux)
 ```
-npm install sequelize-typescript typescript express sequelize pg pg-hstore dotenv
-npm install --save-dev @types/node @types/express
+npm install https://github.com/lik3as/ncaparts-ctrl
+cd .. & git clone https://github.com/lik3as/ncaparts-ctrl
+cd ncaparts-ctrl & npx tsc (ou babel)
+cp dist ../<seu_projeto>/node_modules/ncaparts-ctrl/ 
 ```
-### Variáveis de ambiente
-- A aplicação utiliza o pacote ```dotenv``` para a segurança dos dados.
-- Para o uso correto, defina as variáveis corretamente neste arquivo .env
-### 🚀 Uso 
-#### Adicionar uma nova entidade
+***Não é recomendado utilizar o babel para este projeto sequelize-typescript***
+
+## 🚀 Uso 
+## ⚙ Configurar
+- Babel: todo
+- tsc:
+1. Em ```compilerOptions```, defina ```"experimentalDecorators": true``` e ```"emitDecoratorMetadata": true```.<br>Essas opções irão habilitar os decorators e a inferência de tipo pelo sequelize-typescript.
+
+2. Ainda em ```compilerOptions```, defina ```strictPropertyInitialization: false```.
+Isso fará com que o typescript não reclame de atributos de classes não inicializados.
+
+3. Adicione um arquivo .env no seu diretório ```src/``` contendo os dados do banco de dados da seguinte maneira:
+
+```
+NODE_ENV=<ambiente>
+DB_PROD_USERNAME=<nome_do_usuário>
+DB_PROD_PASSWORD=<senha_do_usuário>
+DB_PROD_DATABASE=<nome_do_bd>
+DB_PROD_HOSTNAME=<nome_do_host>
+DB_PROD_PORT=<porta>
+```
+
+### ➕ Adicionar uma nova entidade
 1. Modele no arquivo disponibilizado pelo criador do repositório
 2. Defina a entidade como tabela no diretório ```models/```
 3. Exporte ela direto do arquivo ```models/index.ts```
 
-#### Controller para o seu novo Model
+### 🛠 Controller para o seu novo Model
 1. Crie um novo arquivo de escopo na pasta ```scopes/```
 2. Adicione nele os seus métodos de escopos, nomeando seguindo o padrão indicado no arquivo ```scopes/scope-types.ts```
 3. Adicione o nome do seu model ao tipo ```method_specific```
