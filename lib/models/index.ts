@@ -44,12 +44,13 @@ class Database{
 
   }
 
-  public async delaySync(sequelize: Sequelize, {after, force}: sync_param): Promise<void>{
-    return new Promise(res => (setTimeout(() => {
-      sequelize.sync({force: force})
-    }, after)))
+  public async delaySync(sequelize: Sequelize, {after, force}: sync_param){
+    for (let i: number = after; i > 0; i--){
+        console.log('Synchronizing in ' + i);
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
+    }
+    sequelize.sync({ force: force });
   }
-
 }
 
 const db: Database = new Database();
@@ -64,12 +65,13 @@ db.sequelize.sync({force: false});
 
 export default db.sequelize;
 
+export const delaySync = db.delaySync;
+
 export {
   Cliente, Venda, Fabricante, Logistica, Marca, Mercadoria, Modelo,
   ProdFab, ProdKit, Produto, Subtipo, Versao, Tipo, Kit
 }
 
-export const delaySync = db.delaySync;
 
 interface sync_param{
   after: number
