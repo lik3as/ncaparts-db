@@ -1,4 +1,4 @@
-import {join, find, ScopesOptionsGetter} from './scope-types.'
+import {join, find, ScopesOptionsGetter} from './scope-types'
 import db from '../models/index';
 import {ProdFab} from '../models/index'
 import {Sequelize, Op} from 'sequelize'

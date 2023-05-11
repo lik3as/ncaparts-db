@@ -1,4 +1,4 @@
-import { join, find, find_join, ScopesOptionsGetter } from './scope-types.'
+import { join, find, find_join, ScopesOptionsGetter } from './scope-types'
 import db from '../models/index'
 import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../models/index'
 import { Op } from 'sequelize'
