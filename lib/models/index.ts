@@ -68,6 +68,7 @@ export {
   Cliente, Venda, Fabricante, Logistica, Marca, Mercadoria, Modelo,
   ProdFab, ProdKit, Produto, Subtipo, Versao, Tipo, Kit
 }
+
 export const delaySync = db.delaySync;
 
 interface sync_param{
