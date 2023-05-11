@@ -44,6 +44,12 @@ class Database{
 
   }
 
+  public async delaySync({after, force}: sync_param): Promise<void>{
+    return new Promise(res => (setTimeout(() => {
+      this.sequelize.sync({force: force})
+    }, after)))
+  }
+
 }
 
 const db: Database = new Database();
@@ -61,4 +67,9 @@ export default db.sequelize;
 export {
   Cliente, Venda, Fabricante, Logistica, Marca, Mercadoria, Modelo,
   ProdFab, ProdKit, Produto, Subtipo, Versao, Tipo, Kit
+}
+
+interface sync_param{
+  after: number
+  force: boolean
 }
