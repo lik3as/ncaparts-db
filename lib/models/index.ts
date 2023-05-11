@@ -35,7 +35,7 @@ class Database{
         dialect: prod_db.production.dialect,
         port: prod_db.production.port as number,
         logging: sql => {
-          console.log(`SQL: \x1b[33m ${sql} \x1b[0m`)
+          console.log(`SQL: \x1b[32m ${sql} \x1b[0m`)
         }
       });
     } catch (e){
