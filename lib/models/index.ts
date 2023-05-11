@@ -52,7 +52,7 @@ class Database{
     sequelize.sync({
         force: force,
         logging: sql => {
-          console.log(`SQL: \x1b[33m ${sql} \x1b[0m`)
+            console.log(`SQL \x1b[35mSYNC\x1b[0m: \x1b[33m ${sql} \x1b[0m`)
         }
     });
   }
