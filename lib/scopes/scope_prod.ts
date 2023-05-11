@@ -3,7 +3,7 @@ import db from '../models/index'
 import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../models/index'
 import { Op } from 'sequelize'
 
-const sequelize = db.sequelize;
+const sequelize = db;
 export const prod_scopes: ScopesOptionsGetter = () => (
   {
     find_by_id(id: number): join {

@@ -44,9 +44,9 @@ class Database{
 
   }
 
-  public async delaySync({after, force}: sync_param): Promise<void>{
+  public async delaySync(sequelize: Sequelize, {after, force}: sync_param): Promise<void>{
     return new Promise(res => (setTimeout(() => {
-      this.sequelize.sync({force: force})
+      sequelize.sync({force: force})
     }, after)))
   }
 
@@ -62,12 +62,13 @@ db.sequelize.addModels([
 
 db.sequelize.sync({force: false});
 
-export default db;
+export default db.sequelize;
 
 export {
   Cliente, Venda, Fabricante, Logistica, Marca, Mercadoria, Modelo,
   ProdFab, ProdKit, Produto, Subtipo, Versao, Tipo, Kit
 }
+export const delaySync = db.delaySync;
 
 interface sync_param{
   after: number
