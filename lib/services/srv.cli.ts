@@ -1,4 +1,4 @@
-import sequelize, { Cliente } from "../models/index";
+import db, { Cliente } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 
@@ -27,7 +27,7 @@ export default class ClienteCtrl implements IFab<Cliente>{
   public async getAllBodies(): Promise<Cliente[]> {
     return Cliente.findAll({
       order: [
-        sequelize.fn('concat', sequelize.col('nome'))
+        db.sequelize.fn('concat', db.sequelize.col('nome'))
       ]
     });
   }

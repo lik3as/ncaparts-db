@@ -62,7 +62,7 @@ db.sequelize.addModels([
 
 db.sequelize.sync({force: false});
 
-export default db.sequelize;
+export default db;
 
 export {
   Cliente, Venda, Fabricante, Logistica, Marca, Mercadoria, Modelo,

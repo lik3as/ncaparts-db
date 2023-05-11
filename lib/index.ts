@@ -24,6 +24,6 @@ export {
 
   as models
 } from './models/index'
-export {default as sequelize} from './models/index'
+export {default as db} from './models/index'
 
 export { sCli, sFab, sKit, sLogi, sMerc, sProd, sVen }

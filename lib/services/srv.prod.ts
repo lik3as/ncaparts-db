@@ -1,4 +1,4 @@
-import sequelize, { Produto, Tipo, Subtipo, Marca, Modelo, Versao } from "../models/index";
+import db, { Produto, Tipo, Subtipo, Marca, Modelo, Versao } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[]
 
@@ -28,7 +28,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
     return await Produto.findAll(
       {
         order: [
-          sequelize.fn('concat', sequelize.col('id_tipo'), sequelize.col('id_subtipo'), sequelize.col('id_marca'), sequelize.col('id_modelo'), sequelize.col('id_versao')) 
+          db.sequelize.fn('concat', db.sequelize.col('id_tipo'), db.sequelize.col('id_subtipo'), db.sequelize.col('id_marca'), db.sequelize.col('id_modelo'), db.sequelize.col('id_versao')) 
         ]
       }
     )
