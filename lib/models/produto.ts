@@ -24,7 +24,8 @@ import {
   ForeignKey,
   HasOne,
   BelongsTo,
-  Scopes
+  Scopes,
+  DataType
 } from 'sequelize-typescript'
 
 /*
@@ -49,6 +50,9 @@ export class Produto extends Model{
   @PrimaryKey
   @Column
   declare id: number;
+
+  @Column(DataType.ARRAY(DataType.STRING))
+  declare imagens: string[]
 
   /*
   *   Product Auto-Association

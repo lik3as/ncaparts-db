@@ -20,9 +20,10 @@ export {
   Tipo,
   Subtipo,
   Marca,
-  Modelo
-  
+  Modelo  
+
   as models
 } from './models/index'
+export {default as sequelize} from './models/index'
 
 export { sCli, sFab, sKit, sLogi, sMerc, sProd, sVen }
