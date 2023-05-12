@@ -1,4 +1,4 @@
-## NCA parts REST application
+## NCA parts SEQUELIZE application
 ## 📥 Installation 
 ```
 npm install ncaparts-ctrl
