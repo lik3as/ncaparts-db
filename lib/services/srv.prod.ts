@@ -36,41 +36,61 @@ export default class ProdutoCtrl implements IFab<Produto>{
 
   public async createCategoria(categoria: string | undefined, body: {}): Promise<void>{
     switch(categoria){
-      case('Tipo'):
+      case ('Tipo'):
+      case('Tipos'): {
         await Tipo.create(body);
         break;
-      case('Subtipo'):
+      }
+      case ('Subtipo'):
+      case('Subtipos'): {
         await Subtipo.create(body);
         break;
-      case('Marca'):
+      }
+      case ('Marca'):
+      case('Marcas'): {
         await Marca.create(body);
         break;
-      case('Modelo'):
+      }
+      case ('Modelo'):
+      case ('Modelos'): {
         await Modelo.create(body);
         break;
-      case('Versao'):
+      }
+      case ('Versao'):
+      case ('Versaos'): {
         await Versao.create(body);
         break;
+      }
       default: 
-        await Tipo.create(body);
+        throw new Error(categoria + " it's not a table.");
         break;
     }
   }
 
   public async getCategorias(categoria: string): Promise<categorias> {
     switch(categoria){
-      case('Tipo'):
+      case ('Tipo'):
+      case('Tipos'): {
         return await Tipo.findAll();
-      case('Subtipo'):
+      }
+      case ('Subtipo'):
+      case('Subtipos'): {
         return await Subtipo.findAll();
-      case('Marca'):
+      }
+      case ('Marca'):
+      case('Marcas'): {
         return await Marca.findAll();
-      case('Modelo'):
+      }
+      case ('Modelo'):
+      case('Modelos'): {
         return await Modelo.findAll();
-      case('Versao'):
+      }
+      case ('Versao'):
+      case('Versaos'): {
         return await Versao.findAll();
+      }
       default:
-        return await Tipo.findAll();
+        throw new Error(categoria + " it's not a table.");
     }
   }
 }
