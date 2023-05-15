@@ -20,9 +20,8 @@ export {
   Tipo,
   Subtipo,
   Marca,
-  Modelo  
+  Modelo
 
-  as models
 } from './models/index'
 export {delaySync, default as sequelize} from './models/index'
 
