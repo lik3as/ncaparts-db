@@ -18,7 +18,7 @@ import {
 } from 'sequelize-typescript'
 
 
-@Table({modelName: 'Mercadorias'})
+@Table({tableName: 'Mercadorias'})
 export class Mercadoria extends Model{
   @PrimaryKey
   @AutoIncrement
