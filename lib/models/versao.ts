@@ -11,7 +11,7 @@ import {
 import { Produto } from './produto'
 
 
-@Table
+@Table({modelName: 'Versoes'})
 export class Versao extends Model{
   @PrimaryKey
   @AutoIncrement
