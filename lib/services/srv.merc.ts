@@ -23,5 +23,9 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
       {method: [`${method}${on}`, args]}
       ).findOne()
   }
+
+  static get skeleton() {
+    return Mercadoria;
+  }
 }
 

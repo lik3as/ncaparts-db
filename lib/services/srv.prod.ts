@@ -93,4 +93,8 @@ export default class ProdutoCtrl implements IFab<Produto>{
         throw new Error(categoria + " it's not a table.");
     }
   }
+
+  static get skeleton() {
+    return Produto;
+  }
 }

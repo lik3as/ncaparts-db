@@ -8,7 +8,6 @@ import param_body from './args/IBodyArgs'
 
 export type body<T> = Promise<T | null>
 export default interface Service<T>{
-
   /**
   *   @returns lista de registros da tabela de acordo com o método;
   *   @param method - Nome do método a ser utilizado:

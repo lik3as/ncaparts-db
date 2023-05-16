@@ -23,5 +23,9 @@ export default class KitCtrl implements IFab<Kit>{
       {method: [`${method}${on}`, args]}
       ).findOne()
   }
+
+  static get skeleton(){
+    return Kit;
+  }
 }
 

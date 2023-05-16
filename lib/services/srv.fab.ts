@@ -24,4 +24,8 @@ export default class FabricanteCtrl implements IFab<Fabricante>{
       {method: [`${method}${on}`, args]}
       ).findOne()
   }
+
+  static get skeleton(){
+    return Fabricante;
+  }
 }

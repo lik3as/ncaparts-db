@@ -23,5 +23,9 @@ export default class LogisticaCtrl implements IFab<Logistica>{
       {method: [`${method}${on}`, args]}
       ).findOne()
   }
+
+  static get skeleton() {
+    return Logistica.getAttributes()
+  }
 }
 

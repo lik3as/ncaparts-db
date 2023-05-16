@@ -6,23 +6,6 @@ import sMerc from './services/srv.merc'
 import sProd from './services/srv.prod'
 import sVen from './services/srv.ven'
 
-export {
-  Cliente,
-  Fabricante,
-  Kit,
-  Logistica,
-  Mercadoria,
-  Produto,
-  Venda,
-  ProdFab,
-  ProdKit,
-  Versao,
-  Tipo,
-  Subtipo,
-  Marca,
-  Modelo
-
-} from './models/index'
-export {delaySync, default as sequelize} from './models/index'
+export { delaySync, default as sequelize } from './models/index'
 
 export { sCli, sFab, sKit, sLogi, sMerc, sProd, sVen }

@@ -23,5 +23,9 @@ export default class VendaCtrl implements IFab<Venda>{
       {method: [`${method}${on}`, args]}
       ).findOne()
   }
+
+  static get skeleton() {
+    return Venda;
+  }
 }
 

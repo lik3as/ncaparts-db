@@ -35,4 +35,9 @@ export default class ClienteCtrl implements IFab<Cliente>{
     await Cliente.create(body);
   }
 
+  static get skeleton(){
+    return Cliente.getAttributes()
+  }
+
+
 }
