@@ -25,7 +25,7 @@ export default class LogisticaCtrl implements IFab<Logistica>{
   }
 
   static get skeleton() {
-    return Logistica.getAttributes()
+    return Logistica;
   }
 }
 

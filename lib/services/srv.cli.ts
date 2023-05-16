@@ -36,7 +36,7 @@ export default class ClienteCtrl implements IFab<Cliente>{
   }
 
   static get skeleton(){
-    return Cliente.getAttributes()
+    return Cliente;
   }
 
 
