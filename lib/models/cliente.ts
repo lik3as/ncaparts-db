@@ -24,8 +24,9 @@ export class Cliente extends Model{
   @Column
   declare contato: string;
   
-  @Column
-  @Unique(true)
+  @Column({
+    unique: 'email_unique',
+  })
   declare email: string;
 
   @Column
