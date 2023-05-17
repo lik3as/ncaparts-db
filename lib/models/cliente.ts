@@ -1,11 +1,14 @@
+import { cli_scopes } from '../scopes/scope_cli';
 import {
   Table,
   Column,
   Model,
   PrimaryKey,
   AutoIncrement,
+  Scopes,
 } from 'sequelize-typescript';
 
+@Scopes(cli_scopes)
 
 @Table
 export class Cliente extends Model{
