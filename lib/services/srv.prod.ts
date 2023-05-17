@@ -1,9 +1,13 @@
-import sequelize, { Produto, Tipo, Subtipo, Marca, Modelo, Versao } from "../models/index";
+import sequelize, { Produto, Tipo, Subtipo, Marca, Modelo, Versao, Mercadoria } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[]
 
 export default class ProdutoCtrl implements IFab<Produto>{
   constructor(){ }
+
+  async getAttr(name: string): Promise<Produto[]> {
+    return await Produto.findAll({attributes: [name]});
+  }
 
   async createOne(body: {}): Promise<Produto> {
     return await Produto.create(body);

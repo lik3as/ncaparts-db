@@ -5,6 +5,10 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class FabricanteCtrl implements IFab<Fabricante>{
   constructor(){ }
 
+  async getAttr(name: string): Promise<Fabricante[]> {
+    return await Fabricante.findAll({attributes: [name]});
+  }
+
   async createOne(body: {}): Promise<Fabricante> {
     return await Fabricante.create(body);
   }

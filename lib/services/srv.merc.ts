@@ -5,6 +5,10 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class MercadoriaCtrl implements IFab<Mercadoria>{
   constructor(){ }
 
+  async getAttr(name: string): Promise<Mercadoria[]> {
+    return await Mercadoria.findAll({attributes: [name]});
+  }
+
   async createOne(body: {}): Promise<Mercadoria> {
     return await Mercadoria.create(body);
   }

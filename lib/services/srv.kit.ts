@@ -5,6 +5,10 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class KitCtrl implements IFab<Kit>{
   constructor(){ }
 
+  async getAttr(name: string): Promise<Kit[]> {
+    return await Kit.findAll({attributes: [name]});
+  }
+
   async createOne(body: {}): Promise<Kit> {
     return await Kit.create(body);
   }

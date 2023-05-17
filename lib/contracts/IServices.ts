@@ -17,6 +17,7 @@ export default interface Service<T extends Model>{
   */
   getBodies({method, on, args}: param_bodies): body<T[]>;
   getBody({method='find_by_', on, args}: param_body): body<T>;
+  getAttr(name: string): Promise<T[]>;
   createOne(body: {}): Promise<T>;
   createMany(bodies: {}[]): Promise<T[]>;
 }
