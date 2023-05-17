@@ -6,6 +6,7 @@ import {
   PrimaryKey,
   AutoIncrement,
   Scopes,
+  Unique,
 } from 'sequelize-typescript';
 
 @Scopes(cli_scopes)
@@ -23,6 +24,7 @@ export class Cliente extends Model{
   @Column
   declare contato: string;
   
+  @Unique
   @Column
   declare email: string;
 

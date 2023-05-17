@@ -1,4 +1,5 @@
 import sequelize, { Cliente } from "../models/index";
+import valid from "validator";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 export default class ClienteCtrl implements IFab<Cliente>{
