@@ -16,7 +16,7 @@ export class Tipo extends Model{
   @Column
   declare id: number;
 
-  @Unique
+  @Unique(true)
   @Column
   declare nome: string;
 
