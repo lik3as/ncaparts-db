@@ -5,6 +5,14 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class MercadoriaCtrl implements IFab<Mercadoria>{
   constructor(){ }
 
+  async createOne(body: {}): Promise<Mercadoria> {
+    return await Mercadoria.create(body);
+  }
+
+  async createMany(bodies: {}[]): Promise<Mercadoria[]> {
+    return await Mercadoria.bulkCreate(bodies);
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Mercadoria[]> { 
     return (typeof args == undefined ) ?
      Mercadoria.scope(

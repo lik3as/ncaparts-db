@@ -5,6 +5,13 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class LogisticaCtrl implements IFab<Logistica>{
   constructor(){ }
 
+  async createOne(body: {}): Promise<Logistica> {
+    return await Logistica.create(body);
+  }
+  async createMany(bodies: {}[]): Promise<Logistica[]> {
+    return await Logistica.bulkCreate(bodies);
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Logistica[]> { 
     return (typeof args == undefined ) ?
      Logistica.scope(

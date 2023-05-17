@@ -5,6 +5,13 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class KitCtrl implements IFab<Kit>{
   constructor(){ }
 
+  async createOne(body: {}): Promise<Kit> {
+    return await Kit.create(body);
+  }
+  async createMany(bodies: {}[]): Promise<Kit[]> {
+    return await Kit.bulkCreate(bodies);
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Kit[]> { 
     return (typeof args == undefined ) ?
      Kit.scope(

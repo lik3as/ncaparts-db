@@ -4,6 +4,13 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class ClienteCtrl implements IFab<Cliente>{
   constructor(){}
 
+  async createOne(body: {}): Promise<Cliente> {
+    return await Cliente.create(body);
+  }
+  async createMany(bodies: {}[]): Promise<Cliente[]> {
+    return await Cliente.bulkCreate(bodies);
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Cliente[]> { 
     return (typeof args == undefined ) ?
      Cliente.scope(
@@ -31,13 +38,8 @@ export default class ClienteCtrl implements IFab<Cliente>{
     });
   }
 
-  public async create(body: {}): Promise<void> {
-    await Cliente.create(body);
-  }
-
   static get skeleton(){
     return Cliente;
   }
-
 
 }

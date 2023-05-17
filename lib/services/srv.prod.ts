@@ -5,6 +5,14 @@ type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[]
 export default class ProdutoCtrl implements IFab<Produto>{
   constructor(){ }
 
+  async createOne(body: {}): Promise<Produto> {
+    return await Produto.create(body);
+  }
+
+  async createMany(bodies: {}[]): Promise<Produto[]> {
+    return await Produto.bulkCreate(bodies)
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Produto[]> { 
     return (typeof args == undefined ) ?
      Produto.scope(

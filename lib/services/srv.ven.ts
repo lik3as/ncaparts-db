@@ -5,6 +5,14 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class VendaCtrl implements IFab<Venda>{
   constructor(){ }
 
+  async createOne(body: {}): Promise<Venda> {
+    return await Venda.create(body);
+  }
+
+  async createMany(bodies: {}[]): Promise<Venda[]> {
+    return await Venda.bulkCreate(bodies);
+  }
+
   public async getBodies({method, on, args}: param_bodies) : body<Venda[]> { 
     return (typeof args == undefined ) ?
      Venda.scope(
