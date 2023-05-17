@@ -17,7 +17,7 @@ export class Modelo extends Model{
   @Column
   declare id: number;
 
-  @Unique
+  @Unique(true)
   @Column
   declare nome: string
 

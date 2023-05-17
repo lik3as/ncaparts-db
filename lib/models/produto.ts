@@ -25,7 +25,8 @@ import {
   HasOne,
   BelongsTo,
   Scopes,
-  DataType
+  DataType,
+  Unique
 } from 'sequelize-typescript'
 
 /*
@@ -95,6 +96,7 @@ export class Produto extends Model{
   @HasMany(() => Mercadoria)
   mercadorias: Mercadoria[];
 
+  @Unique(true)
   @Column
   declare sku: string;
 
