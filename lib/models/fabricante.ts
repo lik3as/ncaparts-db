@@ -12,7 +12,8 @@ import {
   PrimaryKey,
   AutoIncrement,
   BelongsToMany,
-  Scopes
+  Scopes,
+  Unique
 } from 'sequelize-typescript'
 
 
@@ -25,6 +26,7 @@ export class Fabricante extends Model{
   @Column 
   declare id: number;
   
+  @Unique(true)
   @Column
   declare cnpj: string;
 
