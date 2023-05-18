@@ -15,6 +15,15 @@ export const fab_scopes: ScopesOptionsGetter = () => ({
         }
       }
     },
+    find_by_unique(cnpj: string): find{
+      return {
+        where: {
+          cnpj: {
+            [Op.like]: cnpj
+          }
+        }
+      }
+    },
     /* 
     * @param fk_prod -> foreign key da tabela associativa
     */

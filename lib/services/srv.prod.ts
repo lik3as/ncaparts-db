@@ -6,14 +6,16 @@ export default class ProdutoCtrl implements IFab<Produto>{
   constructor(){ }
 
   async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
-    let skus: string[] = [];
-    (await this.getAttr('sku')).forEach((prod, i, arr) => {
-      skus.push(prod.sku);
-    })
-    if (Array.isArray(body)){
-      return body.filter((bdy) => !skus.includes(bdy.sku))
+    if (Array.isArray(body)) {
+      const filtered_map = await Promise.all(
+        body.map(async (prod) => {
+          return (await this.getBody({method: 'find_by_', on: 'unique', args: prod.sku}) == null)
+        })
+      )
+
+      return body.filter((_, i) => filtered_map[i]);
     } else {
-      return (skus.includes((body as any).sku)) ? null : body;
+      return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).sku}));
     }
   }
 

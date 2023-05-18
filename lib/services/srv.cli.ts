@@ -11,21 +11,16 @@ export default class ClienteCtrl implements IFab<Cliente>{
 
   async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
     if (Array.isArray(body)){
-      const filtered = await Promise.all(
+      const filtered_map = await Promise.all(
         body.map(async (bdy) => {
           //Verifica se não há nenhuma ocorrência deste email no banco de dados
-          return (await this.getBody({ method: 'find_by_', on: 'email', args: bdy.email })) == null;
+          return (await this.getBody({ method: 'find_by_', on: 'unique', args: bdy.email })) == null;
         })
       );   
 
-      return body.filter((_, i) => filtered[i]);   
-
+      return body.filter((_, i) => filtered_map[i]);   
     } else {
-      return (await this.getBody({method: 'find_by_', on: 'email', args: (body as any).email})) != null
-      ?
-      null
-      :
-      body;
+      return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).email}));
     }
   }
 

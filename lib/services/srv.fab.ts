@@ -6,14 +6,16 @@ export default class FabricanteCtrl implements IFab<Fabricante>{
   constructor(){ }
 
   async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
-    let fabs: string[] = [];
-    (await this.getAttr('cnpj')).forEach((fab, i, arr) => {
-      fabs.push(fab.cnpj);
-    })
     if (Array.isArray(body)){
-      return body.filter((bdy) => !fabs.includes(bdy.cnpj))
+      const repeated_map = await Promise.all(
+        body.map(async (fab: any) => {
+          return (await this.getBody({method: 'find_by_', on: 'unique', args: fab.cnpj}) == null)
+        })
+      )
+
+      return body.filter((_, i) => repeated_map[i]);
     } else {
-      return (fabs.includes((body as any).cnpj)) ? null : body;
+        return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).cnpj}))
     }
   }
 

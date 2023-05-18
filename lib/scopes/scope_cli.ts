@@ -6,7 +6,7 @@ import {Op} from 'sequelize'
 const sequelize = db;
 
 export const cli_scopes: ScopesOptionsGetter = () => ({ 
-    find_by_email(email: string): find{
+    find_by_unique(email: string): find{
       return{
         where: {
           email: {
