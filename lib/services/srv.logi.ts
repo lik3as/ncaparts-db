@@ -4,6 +4,9 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 export default class LogisticaCtrl implements IFab<Logistica>{
   constructor(){ }
+  filterUniques(body: Object | Object[]): Promise<Object | Object[] | null> {
+    throw new Error("Method not implemented.");
+  }
 
   async getAttr(name: string): Promise<Logistica[]> {
     return await Logistica.findAll({attributes: [name]});

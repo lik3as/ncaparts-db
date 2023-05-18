@@ -1,5 +1,4 @@
 import sequelize, { Cliente } from "../models/index";
-import valid from "validator";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 export default class ClienteCtrl implements IFab<Cliente>{
@@ -8,6 +7,19 @@ export default class ClienteCtrl implements IFab<Cliente>{
   async getAttr(name: string): Promise<Cliente[]> {
     return await Cliente.findAll({attributes: [name]});
   }
+
+  async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
+    let emails: string[] = [];
+    (await this.getAttr('email')).forEach((cli, i, arr) => {
+      emails.push(cli.email);
+    })
+    if (Array.isArray(body)){
+      return body.filter((bdy) => !emails.includes(bdy.email))
+    } else {
+      return (emails.includes((body as any).email)) ? null : body;
+    }
+  }
+
 
   async createOne(body: {}): Promise<Cliente> {
     return await Cliente.create(body);

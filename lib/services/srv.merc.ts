@@ -4,6 +4,9 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 export default class MercadoriaCtrl implements IFab<Mercadoria>{
   constructor(){ }
+  filterUniques(body: Object | Object[]): Promise<Object | Object[] | null> {
+    throw new Error("Method not implemented.");
+  }
 
   async getAttr(name: string): Promise<Mercadoria[]> {
     return await Mercadoria.findAll({attributes: [name]});

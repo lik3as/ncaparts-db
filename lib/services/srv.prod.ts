@@ -5,6 +5,18 @@ type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[]
 export default class ProdutoCtrl implements IFab<Produto>{
   constructor(){ }
 
+  async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
+    let skus: string[] = [];
+    (await this.getAttr('sku')).forEach((prod, i, arr) => {
+      skus.push(prod.sku);
+    })
+    if (Array.isArray(body)){
+      return body.filter((bdy) => !skus.includes(bdy.sku))
+    } else {
+      return (skus.includes((body as any).sku)) ? null : body;
+    }
+  }
+
   async getAttr(name: string): Promise<Produto[]> {
     return await Produto.findAll({attributes: [name]});
   }

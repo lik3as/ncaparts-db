@@ -5,6 +5,18 @@ import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 export default class FabricanteCtrl implements IFab<Fabricante>{
   constructor(){ }
 
+  async filterUniques(body: Object[] | Object): Promise<Object | Object[] | null> {
+    let fabs: string[] = [];
+    (await this.getAttr('cnpj')).forEach((fab, i, arr) => {
+      fabs.push(fab.cnpj);
+    })
+    if (Array.isArray(body)){
+      return body.filter((bdy) => !fabs.includes(bdy.cnpj))
+    } else {
+      return (fabs.includes((body as any).cnpj)) ? null : body;
+    }
+  }
+
   async getAttr(name: string): Promise<Fabricante[]> {
     return await Fabricante.findAll({attributes: [name]});
   }
