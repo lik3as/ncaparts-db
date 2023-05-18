@@ -17,7 +17,7 @@
     "build": "babel ./lib --out-dir ./dist --extensions .ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "lik3",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.21.5",
