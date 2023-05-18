@@ -5,3 +5,4 @@
 */
 export {prod_scopes} from './scope_prod'
 export {fab_scopes} from './scope_fab'
+export {cli_scopes} from './scope_cli'
