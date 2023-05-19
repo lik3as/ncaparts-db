@@ -11,7 +11,7 @@ import {
 import { Produto } from './produto'
 
 
-@Table({tableName: 'Versoes', name: {plural: 'Versoes', singular: 'Versoes'}})
+@Table({tableName: 'Versoes', name: {plural: 'Versao', singular: 'Versoes'}})
 export class Versao extends Model{
   @PrimaryKey
   @AutoIncrement
