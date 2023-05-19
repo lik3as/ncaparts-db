@@ -5,7 +5,6 @@ import {
 } from './index'
 
 import {
-  HasOne,
   PrimaryKey,
   ForeignKey,
   Column,
@@ -14,7 +13,6 @@ import {
   AutoIncrement,
   DataType,
   HasMany,
-  Scopes
 } from 'sequelize-typescript'
 
 
