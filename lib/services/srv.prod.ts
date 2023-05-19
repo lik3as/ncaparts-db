@@ -151,6 +151,26 @@ export default class ProdutoCtrl implements IFab<Produto>{
     return Produto;
   }
 
+  static get tipoSkeleton() {
+    return Tipo;
+  }
+
+  static get subtipoSkeleton() {
+    return Subtipo;
+  }
+
+  static get marcaSkeleton() {
+    return Marca;
+  }
+  
+  static get modeloSkeleton() {
+    return Modelo;
+  }
+
+  static get versaoSkeleton() {
+    return Versao;
+  }
+
   private async filterCatUniques(body: {}[] | {}, cats:  categoria): Promise<{} | {}[]>{
     if (Array.isArray(body)){
       const filtered_map = await Promise.all(
