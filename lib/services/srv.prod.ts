@@ -106,7 +106,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
         }   
       }
       case ('Versao'):
-      case ('Versaos'): {
+      case ('Versoes'): {
         const filtered = await this.filterCatUniques(body, Versao)
 
         if (Array.isArray(filtered)){
@@ -139,7 +139,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
         return await Modelo.findAll();
       }
       case ('Versao'):
-      case('Versaos'): {
+      case('Versoes'): {
         return await Versao.findAll();
       }
       default:
