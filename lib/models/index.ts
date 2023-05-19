@@ -65,9 +65,6 @@ db.sequelize.addModels([
   ProdFab, ProdKit, Produto, Subtipo, Versao, Tipo 
 ]);
 
-
-db.sequelize.sync({force: false});
-
 export default db.sequelize;
 
 export const delaySync = db.delaySync;
