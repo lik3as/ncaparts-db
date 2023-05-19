@@ -175,7 +175,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
     if (Array.isArray(body)){
       const filtered_map = await Promise.all(
         body.map(async (cat) => {
-          (await cats.findOne({
+          return (await cats.findOne({
             where: {
               nome: cat.nome
             }
