@@ -1,7 +1,6 @@
 import {
   Model,
   Column,
-  ForeignKey,
   HasMany,
   Table,
   PrimaryKey,
