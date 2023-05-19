@@ -1,6 +1,9 @@
-import sequelize, { Produto, Tipo, Subtipo, Marca, Modelo, Versao, Mercadoria } from "../models/index";
+import sequelize, { Produto, Tipo, Subtipo, Marca, Modelo, Versao } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
-type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[]
+
+type categorias = Tipo[] | Subtipo[] | Marca[] | Modelo[] | Versao[];
+type categoria_p = Tipo | Subtipo | Marca | Modelo | Versao;
+type categoria = typeof Tipo | typeof Subtipo | typeof Marca | typeof Modelo | typeof Versao;
 
 export default class ProdutoCtrl implements IFab<Produto>{
   constructor(){ }
@@ -60,36 +63,60 @@ export default class ProdutoCtrl implements IFab<Produto>{
     )
   }
 
-  public async createCategoria(categoria: string | undefined, body: {}): Promise<void>{
+  public async createCategoria(categoria: string, body: {}[] | {}): Promise<categorias | categoria_p>{
     switch(categoria){
       case ('Tipo'):
       case('Tipos'): {
-        await Tipo.create(body);
-        break;
+        const filtered = await this.filterCatUniques(body, Tipo)
+
+        if (Array.isArray(filtered)){
+          return await Tipo.bulkCreate(filtered)
+        } else {
+          return await Tipo.create(filtered);
+        }  
       }
       case ('Subtipo'):
       case('Subtipos'): {
-        await Subtipo.create(body);
-        break;
+        const filtered = await this.filterCatUniques(body, Subtipo)
+
+        if (Array.isArray(filtered)){
+          return await Subtipo.bulkCreate(filtered)
+        } else {
+          return await Subtipo.create(filtered);
+        }  
       }
       case ('Marca'):
       case('Marcas'): {
-        await Marca.create(body);
-        break;
+        const filtered = await this.filterCatUniques(body, Marca)
+
+        if (Array.isArray(filtered)){
+          return await Marca.bulkCreate(filtered)
+        } else {
+          return await Marca.create(filtered);
+        }   
       }
       case ('Modelo'):
       case ('Modelos'): {
-        await Modelo.create(body);
-        break;
+        const filtered = await this.filterCatUniques(body, Modelo)
+
+        if (Array.isArray(filtered)){
+          return await Modelo.bulkCreate(filtered)
+        } else {
+          return await Modelo.create(filtered);
+        }   
       }
       case ('Versao'):
       case ('Versaos'): {
-        await Versao.create(body);
-        break;
+        const filtered = await this.filterCatUniques(body, Versao)
+
+        if (Array.isArray(filtered)){
+          return await Versao.bulkCreate(filtered)
+        } else {
+          return await Versao.create(filtered);
+        }   
       }
       default: 
         throw new Error(categoria + " it's not a table.");
-        break;
     }
   }
 
@@ -122,5 +149,28 @@ export default class ProdutoCtrl implements IFab<Produto>{
 
   static get skeleton() {
     return Produto;
+  }
+
+  private async filterCatUniques(body: {}[] | {}, cats:  categoria): Promise<{} | {}[]>{
+    if (Array.isArray(body)){
+      const filtered_map = await Promise.all(
+        body.map(async (cat) => {
+          (await cats.findOne({
+            where: {
+              nome: cat.nome
+            }
+          })) == null
+        })
+      )
+
+      return body.filter((_, i) => filtered_map[i])
+    } else {
+      const cattable = await cats.findOne({
+        where: {
+          nome: (body as any).nome
+        }
+      })
+      return (cattable == null) ? body : cattable;
+    }
   }
 }
