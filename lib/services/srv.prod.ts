@@ -120,7 +120,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
     }
   }
 
-  public async getCats(categoria: string, nome?: string): Promise<categorias> {
+  public async getCats(categoria: string): Promise<categorias> {
     switch(categoria){
       case ('Tipo'):
       case('Tipos'): {
