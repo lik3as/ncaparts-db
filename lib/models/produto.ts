@@ -60,7 +60,7 @@ export class Produto extends Model{
   */
   @ForeignKey(() => Produto)
   @Column
-  declare id_prod: number;
+  declare id_prodSku: number;
 
   @BelongsTo(() => Produto)
   produto: Produto
