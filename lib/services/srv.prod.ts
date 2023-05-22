@@ -120,6 +120,14 @@ export default class ProdutoCtrl implements IFab<Produto>{
     }
   }
 
+  public async getId(sku: string): Promise<number | null>{
+    const prod = (await this.getBody({method: 'find_by_', on: 'unique', args: sku}));
+    return (typeof prod === null) ?
+    null
+    :
+    prod?.id!
+  }
+
   public async getCats(categoria: string): Promise<categorias> {
     switch(categoria){
       case ('Tipo'):
@@ -151,6 +159,8 @@ export default class ProdutoCtrl implements IFab<Produto>{
         throw new Error(categoria + " it's not a table.");
     }
   }
+
+
 
   public async getCatId(categoria: string, nome: string): Promise<number | null> {
     if (nome == undefined) return null;
