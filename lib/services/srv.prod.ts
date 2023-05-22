@@ -120,27 +120,111 @@ export default class ProdutoCtrl implements IFab<Produto>{
     }
   }
 
-  public async getCategorias(categoria: string): Promise<categorias> {
+  public async getCats(categoria: string, nome?: string): Promise<categorias> {
     switch(categoria){
       case ('Tipo'):
       case('Tipos'): {
         return await Tipo.findAll();
+
       }
       case ('Subtipo'):
       case('Subtipos'): {
         return await Subtipo.findAll();
+
       }
       case ('Marca'):
       case('Marcas'): {
-        return await Marca.findAll();
+        return await Marca.findAll()
+
       }
       case ('Modelo'):
       case('Modelos'): {
-        return await Modelo.findAll();
+        return await Modelo.findAll()
+
       }
       case ('Versao'):
       case('Versoes'): {
-        return await Versao.findAll();
+        return await Versao.findAll()
+
+      }
+      default:
+        throw new Error(categoria + " it's not a table.");
+    }
+  }
+
+  public async getCatId(categoria: string, nome: string): Promise<number | null> {
+    if (nome == undefined) return null;
+    switch(categoria){
+      case ('Tipo'):
+      case('Tipos'): {
+        const tipo = (await Tipo.findOne({
+          where: {
+            nome: nome
+          },
+          attributes: ['id']
+        }));
+
+        return (typeof tipo === null) ?
+        null
+        :
+        tipo?.id!
+      }
+
+      case ('Subtipo'):
+      case('Subtipos'): {
+        const subtipo = (await Subtipo.findOne({
+          where: {
+            nome: nome,
+          },
+          attributes: ['id']
+        }));
+        
+        return (typeof subtipo === null) ?
+        null
+        :
+        subtipo?.id!
+      }
+      case ('Marca'):
+      case('Marcas'): {
+        const marca = await Marca.findOne({
+          where: {
+            nome: nome,
+          },
+          attributes: ['id']
+        });
+        
+        return (typeof marca === null) ?
+        null
+        :
+        marca?.id!
+      }
+      case ('Modelo'):
+      case('Modelos'): {
+        const modelo = (await Modelo.findOne({
+          where: {
+            nome: nome,
+          },
+          attributes: ['id']
+        }))
+        
+        return (typeof modelo === null) ?
+        null
+        :
+        modelo?.id!
+      }
+      case ('Versao'):
+      case('Versoes'): {
+        const versao = (await Versao.findOne({
+          where: {
+            nome: nome
+          },
+          attributes: ['id']
+        }));
+        
+        return (typeof versao === null) ?
+        null
+        :
+        versao?.id!
       }
       default:
         throw new Error(categoria + " it's not a table.");
