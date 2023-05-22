@@ -121,6 +121,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
   }
 
   public async getId(sku: string): Promise<number | null>{
+    if (sku == undefined) return null;
     const prod = (await this.getBody({method: 'find_by_', on: 'unique', args: sku}));
     return (typeof prod === null) ?
     null
