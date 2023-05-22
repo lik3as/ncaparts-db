@@ -1,4 +1,4 @@
-import { join, find, find_join, ScopesOptionsGetter } from './scope-types'
+import { join, find, ScopesOptionsGetter } from './scope-types'
 import db from '../models/index'
 import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../models/index'
 import { Op } from 'sequelize'
@@ -6,7 +6,16 @@ import { Op } from 'sequelize'
 const sequelize = db;
 export const prod_scopes: ScopesOptionsGetter = () => (
   {
-    find_by_id(id: number): join {
+    find_by_unique(sku: string): find {
+      return {
+        where: {
+          id: {
+            [Op.eq]: sku
+          }
+        }
+      }
+    },
+    find_by_id(id: number): find {
       return {
         where: {
           id: {
@@ -15,7 +24,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_prod(is_final_prod: boolean): find_join {
+    join_in_prod(is_final_prod: boolean): find & join {
       return {
         include: {
           model: Produto,
@@ -28,7 +37,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_tipo(fk_tipo: number): find_join {
+    join_in_tipo(fk_tipo: number): find & join {
       return {
         include: {
           model: Tipo,
@@ -41,7 +50,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_subtipo(fk_subtipo: number): find_join {
+    join_in_subtipo(fk_subtipo: number): find & join {
       return {
         include: {
           model: Subtipo,
@@ -54,7 +63,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_marca(fk_marca: number): find_join {
+    join_in_marca(fk_marca: number): find & join {
       return {
         include: {
           model: Marca,
@@ -67,7 +76,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_modelo(fk_modelo: number): find_join {
+    join_in_modelo(fk_modelo: number): find & join {
       return {
         include: {
           model: Modelo,
@@ -80,7 +89,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_merc(fk_merc: number): find_join {
+    join_in_merc(fk_merc: number): find & join {
       return {
         include: {
           model: Mercadoria,
@@ -91,7 +100,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_versao(fk_vers: number): find_join {
+    join_in_versao(fk_vers: number): find & join {
       return {
         include: {
           model: Versao,
@@ -103,7 +112,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
       }
     },
     join_in_categories(nome_tipo: string, nome_subtipo: string,
-      nome_marca: string, nome_modelo: string): find_join {
+      nome_marca: string, nome_modelo: string): find & join {
       return {
         include: [{
           model: Tipo,
