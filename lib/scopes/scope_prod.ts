@@ -9,8 +9,8 @@ export const prod_scopes: ScopesOptionsGetter = () => (
     find_by_unique(sku: string): find {
       return {
         where: {
-          id: {
-            [Op.eq]: sku
+          sku: {
+            [Op.like]: sku
           }
         }
       }

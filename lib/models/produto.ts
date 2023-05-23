@@ -58,12 +58,12 @@ export class Produto extends Model{
   /*
   *   Product Auto-Association
   */
+  @BelongsTo(() => Produto)
+  produto: Produto
+
   @ForeignKey(() => Produto)
   @Column
   declare id_prodSku: number;
-
-  @BelongsTo(() => Produto)
-  produto: Produto
 
   /*
   *   OneToMany Product Spec Associations

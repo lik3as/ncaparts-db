@@ -29,7 +29,7 @@ export class Cliente extends Model{
   declare email: string;
 
   @Column
-  declare senha: number;
+  declare senha: string;
 
   @Column
   declare revendedor: boolean;

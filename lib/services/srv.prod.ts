@@ -12,10 +12,9 @@ export default class ProdutoCtrl implements IFab<Produto>{
     if (Array.isArray(body)) {
       const filtered_map = await Promise.all(
         body.map(async (prod) => {
-          return (await this.getBody({method: 'find_by_', on: 'unique', args: prod.sku}) == null)
+          return (await this.getBody({method: 'find_by_', on: 'unique', args: prod.sku})) == null
         })
-      )
-
+      );
       return body.filter((_, i) => filtered_map[i]);
     } else {
       return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).sku}));
@@ -31,7 +30,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
   }
 
   async createMany(bodies: {}[]): Promise<Produto[]> {
-    return await Produto.bulkCreate(bodies)
+    return await Produto.bulkCreate(bodies);
   }
 
   public async getBodies({method, on, args}: param_bodies) : body<Produto[]> { 
