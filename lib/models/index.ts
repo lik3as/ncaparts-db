@@ -44,13 +44,14 @@ class Database{
 
   }
 
-  public async delaySync(sequelize: Sequelize, {after, force}: sync_param){
+  public async delaySync(sequelize: Sequelize, {after, alter = false, force = false}: sync_param){
     for (let i: number = after; i > 0; i--){
         console.log('Synchronizing in ' + i);
         await new Promise(res => setTimeout(res, 1000)); 
     }
     sequelize.sync({
         force: force,
+        alter: alter,
         logging: sql => {
             console.log(`SQL \x1b[35mSYNC\x1b[0m: \x1b[33m ${sql} \x1b[0m`)
         }
@@ -76,6 +77,7 @@ export {
 
 
 interface sync_param{
-  after: number
-  force: boolean
+  after: number,
+  alter?: boolean,
+  force?: boolean
 }
