@@ -17,7 +17,12 @@ export default class ProdutoCtrl implements IFab<Produto>{
       );
       return body.filter((_, i) => filtered_map[i]);
     } else {
-      return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).sku}));
+      const prod = (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).sku}));
+      return prod == null 
+      ?
+      body
+      :
+      null
     }
   }
 

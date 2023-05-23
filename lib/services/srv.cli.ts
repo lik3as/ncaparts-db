@@ -20,7 +20,12 @@ export default class ClienteCtrl implements IFab<Cliente>{
 
       return body.filter((_, i) => filtered_map[i]);   
     } else {
-      return (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).email}));
+      const cli = (await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).email}))
+      return cli == null
+      ?
+      body
+      :
+      null;
     }
   }
 
