@@ -52,7 +52,7 @@ export class Produto extends Model{
   @Column
   declare id: number;
 
-  @Column(DataType.ARRAY(DataType.STRING))
+  @Column(DataType.ARRAY(DataType.STRING(1024)))
   declare imagens: string[]
 
   /*
