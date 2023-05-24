@@ -92,7 +92,6 @@ export default class ProdutoCtrl implements IFab<Produto>{
           as: 'versao',
           attributes: ['id', 'nome']
         }],
-        plain: true
       }
     )
   }
