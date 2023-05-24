@@ -73,21 +73,36 @@ export class Produto extends Model{
   @Column
   declare id_tipo: number;
 
+  @BelongsTo(() => Tipo)
+  tipo: Tipo;
+
   @ForeignKey(() => Subtipo)
   @Column
   declare id_subtipo: number;
+
+  @BelongsTo(() => Subtipo)
+  subtipo: Subtipo;
   
   @ForeignKey(() => Marca)
   @Column
   declare id_marca: number;
 
+  @BelongsTo(() => Marca)
+  marca: Marca;
+
   @ForeignKey(() => Modelo)
   @Column
   declare id_modelo: number;
 
+  @BelongsTo(() => Modelo)
+  modelo: Modelo;
+
   @ForeignKey(() => Versao)
   @Column
   declare id_versao: number;
+
+  @BelongsTo(() => Versao)
+  versao: Versao;
 
   /*
   *   OneToMany Other Associations

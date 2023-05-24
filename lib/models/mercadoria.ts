@@ -13,6 +13,7 @@ import {
   AutoIncrement,
   DataType,
   HasMany,
+  BelongsTo,
 } from 'sequelize-typescript'
 
 
@@ -26,6 +27,9 @@ export class Mercadoria extends Model{
   @Column
   @ForeignKey(() => Produto)
   declare id_prod: number;
+
+  @BelongsTo(() => Produto)
+  produto: Produto
 
   @Column
   @ForeignKey(() => Kit)
