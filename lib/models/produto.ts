@@ -26,7 +26,8 @@ import {
   BelongsTo,
   Scopes,
   DataType,
-  Unique
+  Unique,
+  AllowNull
 } from 'sequelize-typescript'
 
 /*
@@ -112,6 +113,7 @@ export class Produto extends Model{
   mercadorias: Mercadoria[];
 
   @Unique(true)
+  @AllowNull(false)
   @Column
   declare sku: string;
 
