@@ -60,9 +60,39 @@ export default class ProdutoCtrl implements IFab<Produto>{
   public async getAllBodies(): Promise<Produto[]>{
     return await Produto.findAll(
       {
+        attributes: ['id', 'sku', 'final', 'desc', 'imagens'],
         order: [
-          sequelize.fn('concat', sequelize.col('id_tipo'), sequelize.col('id_subtipo'), sequelize.col('id_marca'), sequelize.col('id_modelo'), sequelize.col('id_versao')) 
-        ]
+          sequelize.fn('concat',
+          sequelize.col('tipo'),
+          sequelize.col('subtipo'),
+          sequelize.col('marca'),
+          sequelize.col('modelo'),
+          sequelize.col('versao')) 
+        ],
+        include: [{
+          model: Produto,
+        },{
+          model: Tipo,
+          as: 'tipo',
+          attributes: ['id', 'nome']
+        },{
+          model: Subtipo,
+          as: 'subtipo',
+          attributes: ['id', 'nome']
+        },{
+          model: Marca,
+          as: 'marca',
+          attributes: ['id', 'nome']
+        },{
+          model: Modelo,
+          as: 'modelo',
+          attributes: ['id', 'nome']
+        },{
+          model: Versao,
+          as: 'versao',
+          attributes: ['id', 'nome']
+        }],
+        plain: true
       }
     )
   }
