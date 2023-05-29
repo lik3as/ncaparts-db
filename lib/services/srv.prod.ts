@@ -54,7 +54,29 @@ export default class ProdutoCtrl implements IFab<Produto>{
       throw new Error("Este método retorna uma lista.");
     return Produto.scope(
       {method: [`${method}${on}`, args]}
-      ).findOne()
+      ).findOne({
+        include: [{
+          model: Tipo,
+          as: 'tipo',
+          attributes: ['nome']
+        },{
+          model: Subtipo,
+          as: 'subtipo',
+          attributes: ['nome']
+        },{
+          model: Marca,
+          as: 'marca',
+          attributes: ['nome']
+        },{
+          model: Modelo,
+          as: 'modelo',
+          attributes: ['nome']
+        },{
+          model: Versao,
+          as: 'versao',
+          attributes: ['nome']
+        }]
+      });
   }
 
   public async getAllBodies(): Promise<Produto[]>{
