@@ -79,7 +79,9 @@ export default class ProdutoCtrl implements IFab<Produto>{
       });
   }
 
-  public async getAllBodies(): Promise<Produto[]>{
+  public async getAllBodies(page: number): Promise<Produto[]>{
+    const LIMIT: number = 50
+
     return await Produto.findAll(
       {
         attributes: ['id', 'sku', 'final', 'desc', 'imagens'],
@@ -114,7 +116,10 @@ export default class ProdutoCtrl implements IFab<Produto>{
           as: 'versao',
           attributes: ['id', 'nome']
         }],
-      }
+        subQuery: false,
+        limit: LIMIT,
+        offset: (LIMIT * page)
+      },
     )
   }
 
