@@ -39,5 +39,10 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
   static get skeleton() {
     return Mercadoria;
   }
+
+  async records(): Promise<number> {
+    return await Mercadoria.count();
+  }
+
 }
 

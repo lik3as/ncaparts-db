@@ -26,6 +26,10 @@ export default class ProdutoCtrl implements IFab<Produto>{
     }
   }
 
+  async records(): Promise<number> {
+    return await Produto.count();
+  }
+
   async getAttr(name: string): Promise<Produto[]> {
     return await Produto.findAll({attributes: [name]});
   }
