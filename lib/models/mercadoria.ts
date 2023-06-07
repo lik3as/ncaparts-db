@@ -41,6 +41,9 @@ export class Mercadoria extends Model{
   @Column
   declare importado: boolean;
 
+  @Column
+  declare disponivel: boolean;
+
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
   declare v_real: number;
 
