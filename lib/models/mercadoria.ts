@@ -28,27 +28,27 @@ export class Mercadoria extends Model{
   @ForeignKey(() => Produto)
   declare id_prod: number;
 
-  @Column(DataType.ARRAY(DataType.STRING))
-  declare skus: string[];
-
   @BelongsTo(() => Produto)
-  produto: Produto
+  produto: Produto;
+
+  @Column(DataType.ARRAY(DataType.STRING))
+  declare skus_relacionados: string[];
 
   @Column
   @ForeignKey(() => Kit)
   declare id_kit: number;
 
   @Column
-  declare importado: boolean;
+  declare importada: boolean;
 
   @Column
   declare disponivel: boolean;
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  declare v_real: number;
+  declare valor_real: number;
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  declare v_real_revenda: number;
+  declare valor_real_revenda: number;
 
   @HasMany(() => Logistica)
   logisticas: Logistica[];
