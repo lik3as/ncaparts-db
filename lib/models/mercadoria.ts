@@ -1,3 +1,4 @@
+import { merc_scopes } from '../scopes/scope_merc';
 import {
   Produto,
   Kit,
@@ -15,8 +16,10 @@ import {
   HasMany,
   BelongsTo,
   Unique,
+  Scopes,
 } from 'sequelize-typescript'
 
+@Scopes(merc_scopes)
 
 @Table({tableName: 'Mercadorias'})
 export class Mercadoria extends Model{
