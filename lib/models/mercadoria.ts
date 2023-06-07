@@ -36,7 +36,7 @@ export class Mercadoria extends Model{
 
   @Column
   @ForeignKey(() => Kit)
-  declare id_kit: number;
+  declare id_kit: number | null;
 
   @Column
   declare importada: boolean;
