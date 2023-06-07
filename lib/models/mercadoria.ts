@@ -28,15 +28,15 @@ export class Mercadoria extends Model{
   @ForeignKey(() => Produto)
   declare id_prod: number;
 
+  @Column(DataType.ARRAY(DataType.STRING))
+  declare skus: string[];
+
   @BelongsTo(() => Produto)
   produto: Produto
 
   @Column
   @ForeignKey(() => Kit)
   declare id_kit: number;
-
-  @Column
-  declare sku: string;
 
   @Column
   declare importado: boolean;
