@@ -14,6 +14,7 @@ import {
   DataType,
   HasMany,
   BelongsTo,
+  Unique,
 } from 'sequelize-typescript'
 
 
@@ -23,6 +24,10 @@ export class Mercadoria extends Model{
   @AutoIncrement
   @Column
   declare id: number;
+
+  @Unique(true)
+  @Column
+  declare nome: string;
 
   @Column
   @ForeignKey(() => Produto)
