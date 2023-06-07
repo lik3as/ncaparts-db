@@ -39,7 +39,7 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
 
   async getOffsetBodies(limit: number, pageOffset: number): Promise<Mercadoria[]> {
     return await Mercadoria.findAll({
-      attributes: ['id', 'valor_real', 'valor_real_revenda', 'sku', 'importado'],
+      attributes: ['id', 'valor_real', 'valor_real_revenda', 'skus_relacionados', 'importada', 'disponivel', 'nome'],
       include: [{
         model: Produto,
         as: 'produto',
