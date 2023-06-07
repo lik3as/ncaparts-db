@@ -14,7 +14,6 @@ import {
   DataType,
   HasMany,
   BelongsTo,
-  AllowNull,
 } from 'sequelize-typescript'
 
 
@@ -35,10 +34,11 @@ export class Mercadoria extends Model{
   @Column(DataType.ARRAY(DataType.STRING))
   declare skus_relacionados: string[];
 
-  @Column(DataType.NUMBER)
-  @AllowNull(true)
   @ForeignKey(() => Kit)
-  declare id_kit: number | null;
+  declare id_kit: number;
+
+  @BelongsTo(() => Kit)
+  kit: Kit
 
   @Column
   declare importada: boolean;
