@@ -1,4 +1,4 @@
-import { Mercadoria } from "../models/index";
+import { Mercadoria, Produto, Kit } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 
@@ -15,6 +15,22 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
 
   async createMany(bodies: {}[]): Promise<Mercadoria[]> {
     return await Mercadoria.bulkCreate(bodies);
+  }
+
+  async getOffsetBodies(limit: number, pageOffset: number): Promise<Mercadoria[]> {
+    return await Mercadoria.findAll({
+      attributes: ['id', 'v_real', 'v_real_revenda', 'sku', 'importado'],
+      include: [{
+        model: Produto,
+        as: 'produto',
+      }, {
+        model: Kit,
+        as: 'kit'
+      }],
+      subQuery: false,
+      limit: limit,
+      offset: (limit * pageOffset)
+    });
   }
 
   public async getBodies({method, on, args}: param_bodies) : body<Mercadoria[]> { 

@@ -45,11 +45,7 @@ export class Mercadoria extends Model{
   declare v_real: number;
 
   @Column(DataType.DECIMAL({precision: 10, scale: 2}))
-  declare v_dolar: number;
-
-  @Column(DataType.DECIMAL({precision: 10, scale: 2}))
   declare v_real_revenda: number;
-
 
   @HasMany(() => Logistica)
   logisticas: Logistica[];
