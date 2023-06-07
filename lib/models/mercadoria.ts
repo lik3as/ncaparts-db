@@ -17,6 +17,7 @@ import {
   BelongsTo,
   Unique,
   Scopes,
+  AllowNull,
 } from 'sequelize-typescript'
 
 @Scopes(merc_scopes)
@@ -29,6 +30,7 @@ export class Mercadoria extends Model{
   declare id: number;
 
   @Unique(true)
+  @AllowNull(false)
   @Column
   declare nome: string;
 
