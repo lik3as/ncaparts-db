@@ -1,3 +1,4 @@
+import { kit_scopes } from '../scopes/scope_kit';
 import { Mercadoria, ProdKit, Produto } from './index';
 import {
   Table,
@@ -10,10 +11,7 @@ import {
   HasMany
 } from 'sequelize-typescript'
 
-export type body_kit = {
-  id: number,
-  apelido: string,
-}
+@Scopes(kit_scopes)
 
 @Table
 export class Kit extends Model{
