@@ -1,4 +1,4 @@
-import { Mercadoria, Produto, Kit } from "../models/index";
+import { Mercadoria, Produto, Kit, Tipo, Subtipo, Marca, Modelo, Versao } from "../models/index";
 import IFab, {param_body, param_bodies, body} from '../contracts/IServices'
 
 
@@ -43,6 +43,30 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
       include: [{
         model: Produto,
         as: 'produto',
+        attributes: ['id', 'sku', 'final', 'desc', 'imagens'],
+        include: [{
+          model: Produto,
+        },{
+          model: Tipo,
+          as: 'tipo',
+          attributes: ['id', 'nome']
+        },{
+          model: Subtipo,
+          as: 'subtipo',
+          attributes: ['id', 'nome']
+        },{
+          model: Marca,
+          as: 'marca',
+          attributes: ['id', 'nome']
+        },{
+          model: Modelo,
+          as: 'modelo',
+          attributes: ['id', 'nome']
+        },{
+          model: Versao,
+          as: 'versao',
+          attributes: ['id', 'nome']
+        }],
       }, {
         model: Kit,
         as: 'kit'
