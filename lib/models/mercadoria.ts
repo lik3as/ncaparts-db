@@ -36,7 +36,7 @@ export class Mercadoria extends Model{
 
   @Column
   @ForeignKey(() => Produto)
-  declare id_prod: number;
+  declare id_produto: number;
 
   @BelongsTo(() => Produto)
   produto: Produto;
