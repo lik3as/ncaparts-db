@@ -1,4 +1,5 @@
-import { ScopesOptionsGetter, find } from "./scope-types";
+import { Produto } from "../models";
+import { ScopesOptionsGetter, find, join } from "./scope-types";
 import { Op } from "sequelize";
 
 export const merc_scopes: ScopesOptionsGetter = () => ({
@@ -9,6 +10,19 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
           [Op.like]: nome
         }
       }
+    }
+  },
+  join_in_prod(sku: string): find & join {
+    return {
+      include: [{
+        model: Produto,
+        required: true,
+        where: {
+          sku: {
+            [Op.like]: sku
+          }
+        }
+      }]
     }
   }
 })
