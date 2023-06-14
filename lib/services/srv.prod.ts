@@ -129,7 +129,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
 
   async update(body: Object) {
     try{
-      return await (Produto.update(body, {
+      return await (Produto.update({body}, {
         where: {
           sku: (body as any).sku
         }
