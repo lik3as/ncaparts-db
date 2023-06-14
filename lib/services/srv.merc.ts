@@ -102,12 +102,13 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
 
   async update(body: Object) {
     try{
-      return await (Mercadoria.update(body, {
-        where: {
-          nome: (body as any).nome
-        },
-        
-      }));
+      const instance = await this.getBody({
+        method: 'find_by_',
+        on: 'unique',
+        args: (body as any).nome
+      });
+
+      return await (instance?.update(body));
     }
     catch(e){
       throw e;
