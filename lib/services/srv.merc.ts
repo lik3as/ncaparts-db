@@ -100,6 +100,14 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
     return Mercadoria;
   }
 
+  async update(body: Object) {
+    return await (Mercadoria.update(body, {
+      where: {
+        nome: (body as any).nome
+      }
+    }));
+  }
+
   async records(): Promise<number> {
     return await Mercadoria.count();
   }
