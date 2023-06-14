@@ -127,6 +127,14 @@ export default class ProdutoCtrl implements IFab<Produto>{
     )
   }
 
+  async update(body: Object) {
+    return await (Produto.update(body, {
+      where: {
+        sku: (body as any).sku
+      }
+    }));
+  }
+
   public async createCategoria(categoria: string, body: {}[] | {}): Promise<categorias | categoria_p>{
     switch(categoria){
       case ('Tipo'):
