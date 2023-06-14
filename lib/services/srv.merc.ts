@@ -102,7 +102,7 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
 
   async update(body: Object) {
     try{
-      return await (Mercadoria.update({body}, {
+      return await (Mercadoria.update(body, {
         where: {
           nome: (body as any).nome
         },
@@ -110,7 +110,7 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
       }));
     }
     catch(e){
-      throw new Error('An error ocurred while trying to update Mercadorias table.');
+      throw e;
     }
   }
 

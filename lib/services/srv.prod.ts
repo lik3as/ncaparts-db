@@ -136,7 +136,7 @@ export default class ProdutoCtrl implements IFab<Produto>{
       }));
     }
     catch (e) {
-      throw new Error('An error occured while trying to update Produtos table.');
+      throw e;
     }
   }
 
