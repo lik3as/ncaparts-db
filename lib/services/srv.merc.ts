@@ -101,11 +101,16 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
   }
 
   async update(body: Object) {
-    return await (Mercadoria.update(body, {
-      where: {
-        nome: (body as any).nome
-      }
-    }));
+    try{
+      return await (Mercadoria.update(body, {
+        where: {
+          nome: (body as any).nome
+        }
+      }));
+    }
+    catch(e){
+      throw new Error('An error ocurred while trying to update Mercadorias table.');
+    }
   }
 
   async records(): Promise<number> {

@@ -128,11 +128,16 @@ export default class ProdutoCtrl implements IFab<Produto>{
   }
 
   async update(body: Object) {
-    return await (Produto.update(body, {
-      where: {
-        sku: (body as any).sku
-      }
-    }));
+    try{
+      return await (Produto.update(body, {
+        where: {
+          sku: (body as any).sku
+        }
+      }));
+    }
+    catch (e) {
+      throw new Error('An error occured while trying to update Produtos table.');
+    }
   }
 
   public async createCategoria(categoria: string, body: {}[] | {}): Promise<categorias | categoria_p>{
