@@ -1,4 +1,4 @@
-import { Marca, Modelo, Produto, Subtipo, Tipo, Versao } from "../models";
+import db, { Marca, Modelo, Produto, Subtipo, Tipo, Versao } from "../models";
 import { ScopesOptionsGetter} from "./scope-types";
 import { FindOptions, IncludeOptions, Op, or } from "sequelize";
 
@@ -48,5 +48,10 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
       }]
     }
   },
-  
+  find_by_related(sku: string): FindOptions & IncludeOptions {
+    const sequelize = db
+    return {
+      where: sequelize.literal(`'${sku}' = ANY(skus_relacionados);`)
+    }
+  }
 })

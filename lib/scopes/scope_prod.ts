@@ -4,7 +4,6 @@ import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../mo
 import { FindOptions, IncludeOptions, Op } from 'sequelize'
 
 const sequelize = db;
-const literal = sequelize.literal;
 export const prod_scopes: ScopesOptionsGetter = () => (
   {
     find_by_unique(sku: string): FindOptions {
@@ -109,7 +108,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_tipo: {
-              [Op.eq]: literal(
+              [Op.eq]: sequelize.literal(
                 `SELECT id FROM Tipo ` +
                 `WHERE nome = ${nome_tipo};`
               )
@@ -120,7 +119,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_subtipo: {
-              [Op.eq]: literal(
+              [Op.eq]: sequelize.literal(
                 `SELECT id FROM Subtipo ` +
                 `WHERE nome = ${nome_subtipo};`
               )
@@ -131,7 +130,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_marca: {
-              [Op.eq]: literal(
+              [Op.eq]: sequelize.literal(
                 `SELECT id FROM Marca ` +
                 `WHERE nome = ${nome_marca};`
               )
@@ -142,7 +141,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_modelo: {
-              [Op.eq]: literal(
+              [Op.eq]: sequelize.literal(
                 `SELECT id FROM Modelo ` +
                 `WHERE nome = ${nome_modelo};`
               )
@@ -151,11 +150,5 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }]
       }
     },
-    find_by_merc(sku: string): FindOptions & IncludeOptions {
-      return {
-        include: [{model: Mercadoria, as: 'mercadoria'}],
-        where: literal(`'${sku}' = ANY(skus_relacionados);`)
-      }
-    }
   }
 )
