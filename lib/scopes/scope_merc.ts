@@ -1,9 +1,9 @@
 import { Marca, Modelo, Produto, Subtipo, Tipo, Versao } from "../models";
-import { ScopesOptionsGetter, find, join } from "./scope-types";
-import { Op } from "sequelize";
+import { ScopesOptionsGetter} from "./scope-types";
+import { FindOptions, IncludeOptions, Op, or } from "sequelize";
 
 export const merc_scopes: ScopesOptionsGetter = () => ({
-  find_by_unique(nome: string): find {
+  find_by_unique(nome: string): FindOptions {
     return{
       where: {
         nome: {
@@ -12,7 +12,7 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
       }
     }
   },
-  join_in_prod(sku: string): find & join {
+  join_in_prod(sku: string): FindOptions & IncludeOptions {
     return {
       include: [{
         model: Produto,
@@ -20,7 +20,7 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
         where: {
           sku: {
             [Op.like]: sku
-          }
+          },
         },
         include: [{
           model: Produto,

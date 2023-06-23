@@ -1,12 +1,12 @@
-import { join, find, ScopesOptionsGetter } from './scope-types'
+import {ScopesOptionsGetter } from './scope-types'
 import db from '../models/index'
 import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../models/index'
-import { Op } from 'sequelize'
+import { FindOptions, IncludeOptions, Includeable, Op } from 'sequelize'
 
 const sequelize = db;
 export const prod_scopes: ScopesOptionsGetter = () => (
   {
-    find_by_unique(sku: string): find {
+    find_by_unique(sku: string): FindOptions {
       return {
         where: {
           sku: {
@@ -15,7 +15,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    find_by_id(id: number): find {
+    find_by_id(id: number): FindOptions {
       return {
         where: {
           id: {
@@ -24,9 +24,9 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }
       }
     },
-    join_in_prod(is_final_prod: boolean): find & join {
+    join_in_prod(is_final_prod: boolean): FindOptions & IncludeOptions{
       return {
-        include: {
+        include: [{
           model: Produto,
           required: true,
           where: {
@@ -34,12 +34,12 @@ export const prod_scopes: ScopesOptionsGetter = () => (
               [Op.eq]: is_final_prod
             }
           }
-        }
+        }]
       }
     },
-    join_in_tipo(fk_tipo: number): find & join {
+    join_in_tipo(fk_tipo: number): FindOptions & IncludeOptions{
       return {
-        include: {
+        include: [{
           model: Tipo,
           required: true,
           where: {
@@ -47,12 +47,12 @@ export const prod_scopes: ScopesOptionsGetter = () => (
               [Op.eq]: fk_tipo
             }
           }
-        }
+        }]
       }
     },
-    join_in_subtipo(fk_subtipo: number): find & join {
+    join_in_subtipo(fk_subtipo: number): FindOptions & IncludeOptions{
       return {
-        include: {
+        include: [{
           model: Subtipo,
           required: true,
           where: {
@@ -60,12 +60,12 @@ export const prod_scopes: ScopesOptionsGetter = () => (
               [Op.eq]: fk_subtipo
             }
           }
-        }
+        }]
       }
     },
-    join_in_marca(fk_marca: number): find & join {
+    join_in_marca(fk_marca: number): FindOptions & IncludeOptions {
       return {
-        include: {
+        include: [{
           model: Marca,
           required: true,
           where: {
@@ -73,12 +73,12 @@ export const prod_scopes: ScopesOptionsGetter = () => (
               [Op.eq]: fk_marca
             }
           }
-        }
+        }]
       }
     },
-    join_in_modelo(fk_modelo: number): find & join {
+    join_in_modelo(fk_modelo: number): FindOptions & IncludeOptions{
       return {
-        include: {
+        include: [{
           model: Modelo,
           required: true,
           where: {
@@ -86,33 +86,22 @@ export const prod_scopes: ScopesOptionsGetter = () => (
               [Op.eq]: fk_modelo
             }
           }
-        }
+        }]
       }
     },
-    join_in_merc(fk_merc: number): find & join {
+    join_in_versao(fk_vers: number): FindOptions & IncludeOptions {
       return {
-        include: {
-          model: Mercadoria,
-          required: true,
-          where: {
-            id_merc: { [Op.eq]: fk_merc }
-          }
-        }
-      }
-    },
-    join_in_versao(fk_vers: number): find & join {
-      return {
-        include: {
+        include: [{
           model: Versao,
           required: true,
           where: {
             id_vers: { [Op.eq]: fk_vers }
           }
-        }
+        }]
       }
     },
     join_in_categories(nome_tipo: string, nome_subtipo: string,
-      nome_marca: string, nome_modelo: string): find & join {
+      nome_marca: string, nome_modelo: string): FindOptions & IncludeOptions {
       return {
         include: [{
           model: Tipo,
@@ -157,6 +146,17 @@ export const prod_scopes: ScopesOptionsGetter = () => (
                 `WHERE nome = ${nome_modelo};`
               )
             }
+          }
+        }]
+      }
+    },
+    join_in_merc(skus_relacionados: string): FindOptions & IncludeOptions {
+      return {
+        include: [{
+          model: Mercadoria,
+          as: 'mercadoria',
+          where: {
+            sku: {[Op.any]: `{${[skus_relacionados]}}`}
           }
         }]
       }
