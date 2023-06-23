@@ -1,9 +1,10 @@
 import {ScopesOptionsGetter } from './scope-types'
 import db from '../models/index'
 import { Produto, Tipo, Subtipo, Marca, Modelo, Mercadoria, Versao } from '../models/index'
-import { FindOptions, IncludeOptions, Includeable, Op } from 'sequelize'
+import { FindOptions, IncludeOptions, Op } from 'sequelize'
 
 const sequelize = db;
+const literal = sequelize.literal;
 export const prod_scopes: ScopesOptionsGetter = () => (
   {
     find_by_unique(sku: string): FindOptions {
@@ -108,7 +109,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_tipo: {
-              [Op.eq]: sequelize.literal(
+              [Op.eq]: literal(
                 `SELECT id FROM Tipo ` +
                 `WHERE nome = ${nome_tipo};`
               )
@@ -119,7 +120,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_subtipo: {
-              [Op.eq]: sequelize.literal(
+              [Op.eq]: literal(
                 `SELECT id FROM Subtipo ` +
                 `WHERE nome = ${nome_subtipo};`
               )
@@ -130,7 +131,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_marca: {
-              [Op.eq]: sequelize.literal(
+              [Op.eq]: literal(
                 `SELECT id FROM Marca ` +
                 `WHERE nome = ${nome_marca};`
               )
@@ -141,7 +142,7 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           required: true,
           where: {
             id_modelo: {
-              [Op.eq]: sequelize.literal(
+              [Op.eq]: literal(
                 `SELECT id FROM Modelo ` +
                 `WHERE nome = ${nome_modelo};`
               )
@@ -150,17 +151,10 @@ export const prod_scopes: ScopesOptionsGetter = () => (
         }]
       }
     },
-    join_in_merc(skus_relacionados: string): FindOptions & IncludeOptions {
+    find_by_merc(sku: string): FindOptions & IncludeOptions {
       return {
-        include: [{
-          model: Mercadoria,
-          as: 'mercadoria',
-          where: {
-            sku: {
-              [Op.any]: skus_relacionados
-            }
-          }
-        }]
+        include: [{model: Mercadoria, as: 'mercadoria'}],
+        where: literal(`'${sku}' = ANY(skus_relacionados);`)
       }
     }
   }

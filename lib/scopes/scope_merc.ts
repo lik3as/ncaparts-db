@@ -47,5 +47,6 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
         }],
       }]
     }
-  }
+  },
+  
 })
