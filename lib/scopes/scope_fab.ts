@@ -1,12 +1,13 @@
-import {join, find, ScopesOptionsGetter} from './scope-types'
+"use strict"
+import {ScopesOptionsGetter} from './scope-types'
 import db from '../models/index';
 import {ProdFab} from '../models/index'
-import {Op} from 'sequelize'
+import {FindOptions, IncludeOptions, Op} from 'sequelize'
 
 const sequelize = db;
 
 export const fab_scopes: ScopesOptionsGetter = () => ({ 
-    find_by_id(id: number): find{
+    find_by_id(id: number): FindOptions{
       return{
         where: {
           id: {
@@ -15,7 +16,7 @@ export const fab_scopes: ScopesOptionsGetter = () => ({
         }
       }
     },
-    find_by_unique(cnpj: string): find{
+    find_by_unique(cnpj: string): FindOptions{
       return {
         where: {
           cnpj: {
@@ -27,7 +28,7 @@ export const fab_scopes: ScopesOptionsGetter = () => ({
     /* 
     * @param fk_prod -> foreign key da tabela associativa
     */
-    join_in_prod(fk_prod: number): join{
+    join_in_prod(fk_prod: number): IncludeOptions{
       return {
         include: [{
           model: ProdFab,

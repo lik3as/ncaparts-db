@@ -156,7 +156,9 @@ export const prod_scopes: ScopesOptionsGetter = () => (
           model: Mercadoria,
           as: 'mercadoria',
           where: {
-            sku: {[Op.any]: `{${[skus_relacionados]}}`}
+            sku: {
+              [Op.any]: skus_relacionados
+            }
           }
         }]
       }
