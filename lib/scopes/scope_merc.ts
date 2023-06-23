@@ -52,6 +52,7 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
   find_by_related(sku: string): FindOptions & IncludeOptions {
     const sequelize = db
     return {
+      where: sequelize.literal(`'${sku}' = ANY(skus_relacionados)`),
       include: [
         {
           model: Produto,
@@ -84,7 +85,6 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
           model: Kit,
           as: 'kit'
         }],
-      where: sequelize.literal(`'${sku}' = ANY(skus_relacionados)`)
     }
   }
 })
