@@ -90,7 +90,7 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
     return {
       where: {
         name: {
-          [Op.like]: `%${name}%`
+          [Op.iLike]: `%${name}%`
         }
       },
       include: [{
