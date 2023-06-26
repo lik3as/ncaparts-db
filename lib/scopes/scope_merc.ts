@@ -89,7 +89,7 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
   find_by_name(name: string): FindOptions & IncludeOptions {
     return {
       where: {
-        name: {
+        nome: {
           [Op.iLike]: `%${name}%`
         }
       },
