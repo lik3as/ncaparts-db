@@ -53,7 +53,8 @@ export const merc_scopes: ScopesOptionsGetter = () => ({
   find_by_related(sku: string): FindOptions & IncludeOptions {
     const sequelize = db
     return {
-      attributes: ['id', 'valor_real', 'valor_real_revenda', 'skus_relacionados', 'importada', 'disponivel', 'nome'],
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('id')),'id'],
+       'valor_real', 'valor_real_revenda', 'skus_relacionados', 'importada', 'disponivel', 'nome'],
       where: sequelize.literal(`'${sku}' = ANY(skus_relacionados)`),
       include: [{
         model: Produto,
