@@ -9,13 +9,13 @@ export default class MercadoriaCtrl implements IFab<Mercadoria>{
     if (Array.isArray(body)) {
       const filtered_map = await Promise.all(
         body.map(async (merc) => {
-          return (await this.getBody({method: 'find_by_', on: 'unique', args: merc.nome})) == null;
+          return (await this.getBody({method: 'find_by_', on: 'unique', args: merc.id_produto})) == null;
         })
       )
 
       return body.filter((_, i) => filtered_map[i]);
     } else {
-      const merc = await this.getBody({method: 'find_by_', on: 'unique', args: (body as any).nome});
+      const merc = await this.getBody({method: 'find_by_', on: 'unique', args: (body as Mercadoria).id_produto});
       return merc == null
       ?
       body

@@ -29,11 +29,11 @@ export class Mercadoria extends Model{
   @Column
   declare id: number;
 
-  @Unique(true)
-  @AllowNull(false)
   @Column
   declare nome: string;
 
+  @Unique(true)
+  @AllowNull(false)
   @Column
   @ForeignKey(() => Produto)
   declare id_produto: number;
