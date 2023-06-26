@@ -10,7 +10,7 @@ export declare type ScopesOptionsGetter = () => {
 
 
 export type method_specific = 'prod' | 'fab' | 'logi' | 'tipo' | 'subtipo' |
-'marca' | 'modelo' | 'merc' | 'categories' | 'versao' | 'related' | 'name';
+'marca' | 'modelo' | 'merc' | 'categories' | 'versao' | 'related' | 'name' | 'relatedArray';
 export type method_specific_key =  'id' | 'unique'
 
 /**
